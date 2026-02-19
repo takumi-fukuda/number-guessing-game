@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>数当てゲーム</title>
+</head>
+<body>
+    <h1>数当てゲーム</h1>
+    <h2>決められた回数以内に1~10までの整数を当ててください</h2>
+    <p>難易度</p>
+    <div>
+        <button id = "three">3回以内</button>
+        <button id = "four">4回以内</button>
+        <button id = "five">5回以内</button>
+        <button id = "riset">リセット</button>
+    </div>
+    <h4 id = "main" style = "display: none;">1~10までの好きな整数を入力してください</h4><br>
+    <p id = "remaining" style = "display: none;"></p><br>
+    <input type = "text" id = "text" style = "display: none;">
+    <button id = "check" style = "display: none;">判定</button>
+    <button id = "again" style = "display: none;">もう一回</button>
+    <div id = "answer"></div>
+    <script src = "script.js"></script>
+</body>
+</html>
