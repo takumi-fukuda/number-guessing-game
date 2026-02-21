@@ -23,7 +23,7 @@ function changeNumber() {
 
 function checkNumber() {
     const value = Number(text.value);
-    if(isNaN(value) || value === "") {
+    if(isNaN(value) || text.value === "") {
         answer.innerText = "";
         const span = document.createElement("span");
         span.innerText = "数値を入力してください";
@@ -133,6 +133,7 @@ risetbtn.addEventListener("click", function() {
     text.value = "";
     count = 0;
     invisible();
+    checkbtn.disabled = false;
     threebtn.disabled = false;
     fourbtn.disabled = false;
     fivebtn.disabled = false;
