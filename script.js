@@ -125,6 +125,7 @@ function invisible() {
     checkbtn.style.display = "none";
     remaining.style.display = "none";
     mainText.style.display = "none";
+    againbtn.style.display = "none";
 }
 
 risetbtn.addEventListener("click", function() {
