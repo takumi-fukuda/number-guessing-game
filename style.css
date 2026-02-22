@@ -1,3 +1,4 @@
+/* 画面の中央に配置する */
 body {
   display: flex;
   justify-content: center;
@@ -6,6 +7,11 @@ body {
   background-color: rgba(228, 13, 13, 0.077);
 }
 
+button {
+    cursor: pointer;
+}
+
+/* 画面の中央に配置する */
 .container {
     background-color: white;
     width: 370px;

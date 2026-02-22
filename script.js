@@ -1,4 +1,4 @@
-const text = document.getElementById("text");
+const selectNumber = document.getElementById("number");
 const checkbtn = document.getElementById("check");
 const againbtn = document.getElementById("again");
 const answer = document.getElementById("answer");
@@ -7,7 +7,7 @@ const mainText = document.getElementById("main");
 const threebtn = document.getElementById("three");
 const fourbtn = document.getElementById("four");
 const fivebtn = document.getElementById("five");
-const risetbtn = document.getElementById("riset");
+const resetbtn = document.getElementById("reset");
 
 let maxNumber = 0;
 
@@ -15,23 +15,24 @@ let number = Math.floor(Math.random() * 10) + 1;
 
 let count = 0;
 
-risetbtn.disabled = true;
+resetbtn.disabled = true;
 
+// 乱数を生成する
 function changeNumber() {
     number = Math.floor(Math.random() * 10) + 1;
 }
 
+// 入力された数字を判定する
 function checkNumber() {
-    const value = Number(text.value);
-    if(isNaN(value) || text.value === "") {
+    const value = Number(selectNumber.value);
+    if(isNaN(value) || selectNumber.value === "") {
         answer.innerText = "";
         const span = document.createElement("span");
         span.innerText = "数値を入力してください";
         answer.appendChild(span);
-        text.value = "";
+        selectNumber.value = "";
         return;
     }
-    text.value = "";
     answer.innerText = "";
     count++;
     remainingCount();
@@ -55,6 +56,7 @@ function checkNumber() {
     
 }
 
+// 残り回数を表示する
 function remainingCount() {
     remaining.innerText = "";
     const span = document.createElement("span");
@@ -62,6 +64,7 @@ function remainingCount() {
     remaining.appendChild(span);
 }
 
+// ゲームオーバー時に正解を表示する
 function checkCount() {
     if(count === maxNumber) {
         answer.innerText = "";
@@ -79,6 +82,7 @@ checkbtn.addEventListener("click", function() {
 
 againbtn.addEventListener("click", function() {
     changeNumber();
+    selectNumber.value = "";
     answer.innerText = "";
     checkbtn.disabled = false;
     count = 0;
@@ -86,56 +90,55 @@ againbtn.addEventListener("click", function() {
     againbtn.style.display = "none";
 });
 
-threebtn.addEventListener("click", function() {
-    maxNumber = 3;
+// 難易度選択時にゲームをスタートする
+function gameStart(max) {
+    maxNumber = max;
     visible();
     remainingCount();
+    resetbtn.disabled = false;
+}
+
+threebtn.addEventListener("click", function() {
+    gameStart(3);
     fourbtn.disabled = true;
     fivebtn.disabled = true;
-    risetbtn.disabled = false;
 });
 
 fourbtn.addEventListener("click", function() {
-    maxNumber = 4;
-    visible();
-    remainingCount();
+    gameStart(4);
     threebtn.disabled = true;
     fivebtn.disabled = true;
-    risetbtn.disabled = false;
 });
 
 fivebtn.addEventListener("click", function() {
-    maxNumber = 5;
-    visible();
-    remainingCount();
+    gameStart(5);
     threebtn.disabled = true;
     fourbtn.disabled = true;
-    risetbtn.disabled = false;
 });
 
 function visible() {
-    text.style.display = "inline";
+    selectNumber.style.display = "inline";
     checkbtn.style.display = "inline";
     remaining.style.display = "inline";
     mainText.style.display = "inline";
 }
 
 function invisible() {
-    text.style.display = "none";
+    selectNumber.style.display = "none";
     checkbtn.style.display = "none";
     remaining.style.display = "none";
     mainText.style.display = "none";
     againbtn.style.display = "none";
 }
 
-risetbtn.addEventListener("click", function() {
+resetbtn.addEventListener("click", function() {
     answer.innerText = "";
-    text.value = "";
+    selectNumber.value = "";
     count = 0;
     invisible();
     checkbtn.disabled = false;
     threebtn.disabled = false;
     fourbtn.disabled = false;
     fivebtn.disabled = false;
-    risetbtn.disabled = true;
+    resetbtn.disabled = true;
 });
